@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/volume.css">
+  <link rel="stylesheet" type="text/css" href="../css/text.css" />
+  <title>Fontaine du cours</title>
+</head>
+
+<body style="margin: 0px; overflow: hidden;">
+
+  <!-- CAMERA -->
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+  >
+  <a-entity camera></a-entity>
+  </a-scene>
+  <!-- CAMERA -->
+
+  <!-- SON -->
+  <div class="position">
+    <label for="volumeCheckbox" class="volume" onclick="toggleAudio()"> 
+          <input id="volumeCheckbox" type="checkbox" class="volume-checkbox" onclick="toggleAudio()" />
+        <svg viewBox="0 0 108 96">
+            <path d="M7,28 L35,28 L35,28 L59,8 L59,88 L35,68 L7,68 C4.790861,68 3,66.209139 3,64 L3,32 C3,29.790861 4.790861,28 7,28 Z"></path>
+            <path d="M79,62 C83,57.3333333 85,52.6666667 85,48 C85,43.3333333 83,38.6666667 79,34 L49,3"></path>
+            <path d="M95,69 C101.666667,61.6666667 105,54.3333333 105,47 C105,39.6666667 101.666667,32.3333333 95,25 L75.5,6 L49,33"></path>
+        </svg>
+    </label>
+  </div>
+  <!-- SON -->
+
+  <!-- SON -->
+  <audio id="ambianceAudio" loop>
+    <source src="../son/ambiance_general.mp3" type="audio/mp3" />
+    Your browser does not support the audio tag.
+  </audio>
+  <!-- SON -->
+ 
+  <!-- EXPLICATION/EGNIME/TEXTE -->
+ <div id="container1" class="container">
+    <p class="custom-font">Bienvenue au pontevechju</p>
+    <div class="button-container">
+      <button onclick="switchContainer(1)">&#8594;</button>
+    </div>
+  </div>
+
+  <div id="container2" class="container hidden">
+    <p class="custom-font">bougie</p>
+    <div class="button-container">
+      <button onclick="switchContainer(2)">&#8594;</button>
+    </div>
+  </div>
+
+  <div id="container3" class="container hidden">
+    <p class="custom-font">anneau</p>
+    <div class="button-container">
+      <button onclick="switchContainer(3)">&#8594;</button>
+    </div>
+  </div>
+
+  <div id="container4" class="container hidden">
+    <p class="custom-font" >Nouveau texte dans le quatrième container</p>
+    <div class="bottom-centered-buttons">
+      <button  class="bouton-container5" onclick="selectAutre(); switchContainer(1);">Lavande</button>
+      <button  class="bouton-container5" onclick="selectAutre(); switchContainer(2);">Ortie</button>
+      <button  class="bouton-container5" onclick="selectImmortelle(); switchContainer(2);">Immortelle</button>
+    </div>
+  </div>
+
+  <div id="container5" class="container hidden">
+    <p class="custom-font">Texte dans le cinquième container</p>
+  </div>
+
+  <div id="container6" class="container hidden">
+    <p class="custom-font">Pas immortelle</p>
+    <div class="button-container">
+        <button onclick="redirectWithConfirmation();">&#8594;</button>
+    </div>
+</div>
+
+<div id="container7" class="container hidden">
+    <p class="custom-font">immortelle</p>
+    <div class="button-container">
+      <button onclick="redirectWithConfirmation();">&#8594;</button>
+  </div>
+</div>
+  <!-- EXPLICATION/EGNIME/TEXTE -->
+
+  <!-- CHOIX PENDENTIF -->
+  <script>
+    function selectImmortelle() {
+        localStorage.setItem('immortelle', true);
+    }
+
+    function selectAutre() {
+        localStorage.setItem('immortelle', false);
+    }
+  </script>
+  <!-- CHOIX PENDENTIF -->
+
+  <!-- REDIRECTION VERS CAMERA -->
+  <script>
+    function redirectWithConfirmationB() {
+      var confirmRedirect = confirm("Vous allez etre dirigé vers la camera, veuilliez scanner le qrcode");
+      if (confirmRedirect) {
+        window.location.href = '../ar/bougie.html';
+      }
+    }
+
+    function redirectWithConfirmationA() {
+      var confirmRedirect = confirm("Vous allez etre dirigé vers la camera, veuilliez scanner le qrcode");
+      if (confirmRedirect) {
+        window.location.href = '../ar/anneau.html';
+      }
+    }
+  </script>
+  <!-- REDIRECTION VERS CAMERA -->
+
+  <!-- CONTAINER -->
+  <script src="../script/text.js"></script>
+  <!-- CONTAINER -->
+
+  <!-- SON -->
+  <script src="../script/son.js"></script>
+  <!-- SON -->
+
+  <!-- CHOIX -->
+  <script src="../script/actionchoix.js"></script>
+  <!-- CHOIX -->
+</body>
+</html>

@@ -1,0 +1,103 @@
+body {
+  font-family: sans-serif;
+  font-size: 25px;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  flex-direction: column; /* Pour empiler les containers verticalement */
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7); /* Fond noir semi-transparent */
+  width: 100%;
+  box-sizing: border-box; /* Pour inclure le padding dans la largeur */
+  max-height: 70vh; /* Hauteur maximale de 70% de la vue */
+  position: fixed; /* Ajout de la position fixe */
+  bottom: 0; /* Position en bas de l'écran */
+}
+
+.hidden {
+  display: none;
+}
+
+.button-container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer; /* Pour indiquer que le bouton est cliquable */
+}
+
+.button-container button {
+  background-color: transparent; /* Fond transparent */
+  border: none; /* Supprime le bord par défaut du bouton */
+  font-size: 1.2rem; /* Ajustez la taille de la police selon vos besoins */
+  color: white; /* Couleur du texte blanche */
+}
+
+#container5 {
+  background-color: rgba(0, 0, 0, 0.7); /* Fond noir semi-transparent */
+  color: white; /* Texte blanc */
+  text-align: center;
+}
+
+.bottom-centered-buttons {
+  position: absolute;
+  margin-top: 200px;
+  bottom: 10px; /* Ajustez selon votre besoin */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 50px; /* Augmente l'espacement entre les boutons */
+}
+
+#container5 .bottom-centered-buttons button.bouton-container5 {
+  background: #c7c7ed; /* Couleur principale bleu-gris */
+  font-family: "Dumbledor";
+  font-size: 20px; /* Augmente la taille du texte */
+  background: linear-gradient(to bottom, #c1c7f4, #5f759e); 
+  border: none;
+  color: white;
+  border-radius: 5px; /* Augmente le rayon de bordure pour des coins plus arrondis */
+  padding: 10px 30px; /* Augmente la taille du bouton */
+}
+
+#container1 .bottom-centered-buttons button.bouton-container1 {
+  background: #c7c7ed; /* Couleur principale bleu-gris */
+  font-family: "Dumbledor";
+  font-size: 20px; /* Augmente la taille du texte */
+  background: linear-gradient(to bottom, #c1c7f4, #5f759e); 
+  border: none;
+  color: white;
+  border-radius: 5px; /* Augmente le rayon de bordure pour des coins plus arrondis */
+  padding: 10px 30px; /* Augmente la taille du bouton */
+}
+
+p{
+  margin-bottom: 80px;
+}
+
+a {
+  margin-bottom: 80px;
+  font-size: px; 
+}
+
+@font-face {
+  font-family: "Dumbledor";
+  src: url('../css/dum1.ttf') format('truetype');
+  /* Ajoutez d'autres propriétés de la police si nécessaire */
+}
+
+.custom-font {
+  font-family: "Dumbledor", sans-serif;
+  /* Ajoutez d'autres styles si nécessaire */
+}
+
+.hidden-camera {
+  display: none !important;
+}
