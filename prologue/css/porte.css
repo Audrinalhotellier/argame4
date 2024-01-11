@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100vh;
+    position: relative;
+  }
+
+  .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+  }
+
+  .left-link {
+    background-color: rgba(52, 152, 219, 0); /* Complètement transparent */
+    left: 0;
+  }
+
+  .right-link {
+    background-color: rgba(231, 76, 60, 0); /* Complètement transparent */
+    right: 0;
+  }
+
+  .portes-debut {
+    grid-column: span 2;
+    text-align: center;
+    position: relative;
+  }
+
+  .portes-debut img {
+    margin-top:100px; ;
+    width: 100%;
+    height: auto;
+  }

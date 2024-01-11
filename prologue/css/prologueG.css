@@ -1,5 +1,5 @@
 body {
-  font-size: 25px;
+  font-size: 30px;
   text-align: center;
   width: 100vw;
   height: 100vh;
@@ -24,12 +24,12 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
+.qrcode img {
+  margin-bottom: 150px;
+  width: 100%;
+  height: auto;
+}
 
 @font-face {
   font-family: "Dumbledor";
@@ -38,6 +38,8 @@ img {
 }
 
 .custom-font {
+  margin-top: 200px;
   font-family: "Dumbledor", sans-serif;
   /* Ajoutez d'autres styles si nécessaire */
 }
+

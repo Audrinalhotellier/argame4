@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./prologueG.css">
+    <link rel="stylesheet" href="../css/prologueG.css">
     <link rel="stylesheet" href="../css/volume.css">
-
     <title>Explication Fin</title>
 </head>
-<body>
+<body style="background-image: url('../assets/fond.jpg'); background-size: cover;">
     <audio id="ambianceAudio" loop>
-        <source src="../assets/ambiance.mp3" type="audio/mp3" />
+        <source src="../../parcours/son/ambiance_general.mp3" type="audio/mp3" />
         Your browser does not support the audio tag.
       </audio>
 
+    <section class="content">
+        <p class="custom-font">
+            Rendez-vous à la fontaine du cours afin de commencer votre aventure.
+        </p>   
+    </section>
 
     <div class="position">
         <label for="volumeCheckbox" class="volume" onclick="toggleAudio()">

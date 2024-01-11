@@ -1,0 +1,56 @@
+body{
+  background-color: rgb(125, 181, 216);
+  background-image: url('../../prologue/assets/fond.jpg'); 
+  background-size: cover;
+ }  
+
+ 
+ #temps-ecoule {
+  color: white; /* Couleur de texte rouge */
+  font-size: 300px;
+  position: relative;
+  top: -200px; 
+  left: -15%;
+}
+
+
+#timer_container > #time{
+  margin: 0;
+  color: white;
+  position: relative;
+  font-size: 300px;
+  top: 26%;
+  left: 5%;
+  text-align: center;
+}
+
+#timer_container{
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 100%;
+  top: 35%;
+  left: 18%;
+  margin: 0 auto;
+}
+#timer_container > div {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width:40px;
+  height:60px;
+  background-color:rgba(225,225,225,.5);
+}
+
+@font-face {
+  font-family: "Dumbledor";
+  src: url('../css/dum1.ttf') format('truetype');
+  /* Ajoutez d'autres propriétés de la police si nécessaire */
+}
+
+.custom-font {
+  margin-top: 200px;
+  font-family: "Dumbledor", sans-serif;
+  /* Ajoutez d'autres styles si nécessaire */
+}

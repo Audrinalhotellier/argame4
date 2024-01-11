@@ -59,7 +59,7 @@ body {
 #container5 .bottom-centered-buttons button.bouton-container5 {
   background: #c7c7ed; /* Couleur principale bleu-gris */
   font-family: "Dumbledor";
-  font-size: 20px; /* Augmente la taille du texte */
+  font-size: 25px; /* Augmente la taille du texte */
   background: linear-gradient(to bottom, #c1c7f4, #5f759e); 
   border: none;
   color: white;
@@ -70,7 +70,7 @@ body {
 #container1 .bottom-centered-buttons button.bouton-container1 {
   background: #c7c7ed; /* Couleur principale bleu-gris */
   font-family: "Dumbledor";
-  font-size: 20px; /* Augmente la taille du texte */
+  font-size: 25px; /* Augmente la taille du texte */
   background: linear-gradient(to bottom, #c1c7f4, #5f759e); 
   border: none;
   color: white;

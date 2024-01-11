@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  <script src="../script/gesture-detector.js"></script>
+  <script src="../script/gesture-handler.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/volume.css">
   <link rel="stylesheet" type="text/css" href="../css/text.css" />
   <title>Fontaine du cours</title>
@@ -12,16 +14,38 @@
 
 <body style="margin: 0px; overflow: hidden;">
 
-  <!-- CAMERA -->
-  <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-  >
-  <a-entity camera></a-entity>
-  </a-scene>
-  <!-- CAMERA -->
+ <!-- CAMERA -->
+ <a-scene
+ arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+ embedded
+ renderer="logarithmicDepthBuffer: true;"
+ vr-mode-ui="enabled: false"
+ gesture-detector
+ id="scene"
+>
+<a-nft
+type="nft"
+url="../nft/qr_code7M"
+smooth="true"
+smoothCount="50"
+smoothTolerance="0.1"
+smoothThreshold="50"
+raycaster="objects: .clickable"
+emitevents="true"
+cursor="fuse: false; rayOrigin: mouse;"
+>
+<a-entity
+ gltf-model="../3d/signadora.glb"
+ scale="1500 1500 1500"
+ position="150 30 -100"
+ rotation="-90 0 0"
+ gesture-handler
+>
+</a-entity>
+</a-nft>
+ <a-entity camera></a-entity>
+</a-scene>
+<!-- CAMERA -->
 
   <!-- SON -->
   <div class="position">
@@ -44,13 +68,11 @@
   <!-- SON -->
  
   <!-- EXPLICATION/EGNIME/TEXTE -->
- <div id="container1" class="container">
-    <p class="custom-font" id="container1Text">Texte 1</p>
-    <div class="bottom-centered-buttons">
-      <button class="bouton-container1" onclick="selectCroire(); switchContainer(5);">Croire</button>
-      <button class="bouton-container1" onclick="selectPasCroire(); switchContainer(5);">Ne pas croire</button>
+    <div id="container1" class="container">
+    <div class="button-container">
+      <button onclick="switchContainer(4)">&#8594;</button>
     </div>
-  </div>
+    </div>
 
   <div id="container2" class="container hidden">
     <p class="custom-font">unique texte</p>
@@ -74,7 +96,11 @@
   </div>
 
   <div id="container5" class="container hidden">
-    <p class="custom-font">Texte dans le cinquième container</p>
+    <p class="custom-font" id="container1Text">Texte 1</p>
+    <div class="bottom-centered-buttons">
+      <button class="bouton-container5" onclick="selectCroire();  redirectWithConfirmation()">Croire</button>
+      <button class="bouton-container5" onclick="selectPasCroire(); redirectWithConfirmation()">Ne pas croire</button>
+    </div>
    
   </div>
 
@@ -82,7 +108,19 @@
     <p class="custom-font" id="container6Text">Nouveau texte dans le sixième container</p>
     <div class="button-container">
       <button onclick="redirectWithConfirmation();">&#8594;</button>
-    </div>
+  </div>
+
+  <div id="container7" class="container hidden">
+  </div>
+
+  <div id="container8" class="container hidden">
+  </div>
+
+  <div id="container9" class="container hidden">
+  </div>
+
+  <div id="container10" class="container hidden">
+  </div>
   <!-- EXPLICATION/EGNIME/TEXTE -->
 
   <!-- CHOIX CROIRE -->
@@ -103,17 +141,25 @@
    
       var choixPendentif = localStorage.getItem('choixPendentif') === 'true';
       var choixSciaquajola = localStorage.getItem('sciaquajola') === 'true';
+      var choixPasPendentif = localStorage.getItem('choixPendentif') === 'false';
+      var choixPasSciaquajola = localStorage.getItem('sciaquajola') === 'false';
       var croire = localStorage.getItem('croire') === 'true';
       var container1Text = document.getElementById('container1Text');
       var container6Text = document.getElementById('container6Text');
-  
+     
       if (choixPendentif && choixSciaquajola && croire) {
           container6Text.textContent = 'Croire1';
-      } else {
+      } else if (choixPasPendentif && choixSciaquajola && croire) {
           container6Text.textContent = 'Croire2';
+      } else if (choixPendentif && choixPasSciaquajola && croire) {
+          container6Text.textContent = 'Croire2';
+      } else if (choixPasPendentif && choixPasSciaquajola && croire) {
+          container6Text.textContent = 'Croire2';
+      } else {
+        container6Text.textContent = 'Ne pas croire';
       }
   
-      </script>
+    </script>
       <!-- CHOIX DIFFERENTS TEXTES -->
   
 
@@ -138,16 +184,13 @@
     </script>
     <!-- CHOIX DIFFERENTS TEXTES -->
 
-  <!-- REDIRECTION VERS CAMERA -->
+  <!-- REDIRECTION VERS RELOAD -->
   <script>
     function redirectWithConfirmation() {
-      var confirmRedirect = confirm("Vous allez etre dirigé vers la camera, veuilliez scanner le qrcode");
-      if (confirmRedirect) {
-        window.location.href = '../ar/QR8M.html';
-      }
+        window.location.href = './QR8M1.html';
     }
   </script>
-  <!-- REDIRECTION VERS CAMERA -->
+  <!-- REDIRECTION VERS RELOAD -->
 
   <!-- CONTAINER -->
   <script src="../script/text.js"></script>

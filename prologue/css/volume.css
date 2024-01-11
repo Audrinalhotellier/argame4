@@ -1,7 +1,7 @@
 .position {
     position: fixed;
     top: 30px;
-    right: calc(30px + 1%); /* La valeur 1% garantit que la distance est toujours de 30px du bord droit */
+    right: calc(20px + 1%); /* La valeur 1% garantit que la distance est toujours de 30px du bord droit */
     text-align: center;
 }
 

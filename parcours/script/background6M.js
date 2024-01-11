@@ -1,16 +1,6 @@
 var Courir = localStorage.getItem('courir') === 'true';
-var Marcher = localStorage.getItem('courir') === 'false';
 
 var body = document.body; // Ajoutez ceci pour obtenir l'élément body
-
-if (Courir) {
-  body.style.backgroundImage = 'url("../assets/image1.jpg")';
-} else if (Marcher) {
-  body.style.backgroundImage = 'url("../assets/image2.jpg")';
-} else {
-  // Fallback au cas où ni Courir ni Marcher ne sont définis
-  body.style.backgroundImage = 'url("../assetes/image3.jpg")';
-}
 
 var container1Text = document.getElementById('container1Text');
 

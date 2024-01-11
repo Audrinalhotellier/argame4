@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    color: white;
+    text-align: justify;
+}
+
+.video-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.text-container {
+    padding: 20px; /* Ajoutez la quantité d'espace désirée sur les côtés */
+    font-family: "Dumbledor", sans-serif;
+    margin-top: 0;
+    font-size: 25px;
+    font-style: bold;
+    
+}
+
+video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@font-face {
+    font-family: "Dumbledor";
+    src: url('../css/dum1.ttf') format('truetype');
+    /* Ajoutez d'autres propriétés de la police si nécessaire */
+  }
+  
+  .custom-font {
+    font-family: "Dumbledor", sans-serif;
+    padding: 20px; /* Ajoutez la quantité d'espace désirée sur les côtés */
+    margin-top: 0;
+    font-size: 35px;
+    font-style: bold;
+    text-align: center;
+  }
+
+  a {
+    text-decoration: none; /* Enlève le souligné */
+    color: inherit; /* Utilise la couleur héritée du texte parent (blanc dans ce cas) */
+}

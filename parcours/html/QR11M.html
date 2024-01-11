@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  <script src="../script/gesture-detector.js"></script>
+  <script src="../script/gesture-handler.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/volume.css">
   <link rel="stylesheet" type="text/css" href="../css/text.css" />
   <title>Fontaine du cours</title>
@@ -12,16 +14,38 @@
 
 <body style="margin: 0px; overflow: hidden;">
 
-  <!-- CAMERA -->
-  <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-  >
-  <a-entity camera></a-entity>
-  </a-scene>
-  <!-- CAMERA -->
+<!-- CAMERA -->
+<a-scene
+arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+embedded
+renderer="logarithmicDepthBuffer: true;"
+vr-mode-ui="enabled: false"
+gesture-detector
+id="scene"
+>
+<a-nft
+type="nft"
+url="../nft/qr_code10M"
+smooth="true"
+smoothCount="50"
+smoothTolerance="0.1"
+smoothThreshold="50"
+raycaster="objects: .clickable"
+emitevents="true"
+cursor="fuse: false; rayOrigin: mouse;"
+>
+<a-entity
+gltf-model="../3d/signadora.glb"
+scale="1500 1500 1500"
+position="150 30 -100"
+rotation="-90 0 0"
+gesture-handler
+>
+</a-entity>
+</a-nft>
+<a-entity camera></a-entity>
+</a-scene>
+<!-- CAMERA -->
 
   <!-- SON -->
   <div class="position">
@@ -44,17 +68,18 @@
   <!-- SON -->
  
   <!-- EXPLICATION/EGNIME/TEXTE -->
+  
  <div id="container1" class="container">
-    <p class="custom-font" id="container1Text">pendentif</p>
+    <p class="custom-font" id="container1Text">Alors que j’arrive au Jardin de la Mairie, je vois au loin un ours enchaîné à un arbre. Le pendentif brille fortement et m’empêche de m’approcher plus de l’ours. Je ne peux pas l’atteindre.</p>
     <div class="button-container">
-      <button onclick="switchContainer(2)">&#8594;</button>
+      <button onclick="switchContainer(1)">&#8594;</button>
     </div>
   </div>
 
   <div id="container2" class="container hidden">
-    <p class="custom-font">global</p>
+    <p class="custom-font">J'aperçois brièvement ma proie se dirigeant en direction du musée</p>
     <div class="button-container">
-      <button onclick="switchContainer(2)">&#8594;</button>
+      <button onclick="redirectWithConfirmation();">&#8594;</button>
     </div>
   </div>
 
@@ -73,10 +98,10 @@
   </div>
 
   <div id="container5" class="container hidden">
-    <p class="custom-font">Texte dans le cinquième container</p>
+    <p class="custom-font">Alors que j’arrive au Jardin de la Mairie, je vois au loin un ours enchaîné à un arbre. Cette pauvre bête à l'aire mal en point.</p>
     <div class="bottom-centered-buttons">
-      <button class="bouton-container5" onclick="selectLibere(); switchContainer(2);">La libérer</button>
-      <button class="bouton-container5" onclick="selectPasLibere(); switchContainer(2);">Ne pas la libérer</button>
+      <button class="bouton-container5" onclick="selectLibere(); switchContainer(1);">La libérer</button>
+      <button class="bouton-container5" onclick="selectPasLibere(); switchContainer(1);">Ne pas la libérer</button>
     </div>
   </div>
 
@@ -84,7 +109,19 @@
     <p class="custom-font" id="container6Text">Nouveau texte dans le sixième container</p>
     <div class="button-container">
       <button onclick="redirectWithConfirmation();">&#8594;</button>
-    </div>
+  </div>
+
+  <div id="container7" class="container hidden">
+  </div>
+
+  <div id="container8" class="container hidden">
+  </div>
+
+  <div id="container9" class="container hidden">
+  </div>
+
+  <div id="container10" class="container hidden">
+  </div>
   <!-- EXPLICATION/EGNIME/TEXTE -->
 
   <!-- CHOIX CROIRE -->
@@ -103,6 +140,7 @@
   <!-- CHOIX DIFFERENTS TEXTES -->
   <script>
     var choixPendentif = localStorage.getItem('choixPendentif') === 'true';
+    var choixPasPendentif = localStorage.getItem('choixPendentif') === 'false';
     var liberer = localStorage.getItem('liberer') === 'true';
     var PasLiberer = localStorage.getItem('liberer') === 'false';
     var container1 = document.getElementById('container1');
@@ -117,26 +155,27 @@
         container5.classList.remove('hidden');
         container1.classList.add('hidden'); // Cacher container5
     }
-
-    if (choixPendentif || PasLiberer) {
-        container3Text.textContent = 'pas liberer';
-    } else {
-        container3Text.textContent = 'liberer';
-    }
 </script>
     <!-- CHOIX DIFFERENTS TEXTES -->
 
 
-  <!-- REDIRECTION VERS CAMERA -->
-  <script>
-    function redirectWithConfirmation() {
-      var confirmRedirect = confirm("Vous allez etre dirigé vers la camera, veuilliez scanner le qrcode");
-      if (confirmRedirect) {
-        window.location.href = '../ar/QR11M.html';
+    <script>
+      function redirectWithConfirmation() {
+        var choixPendentif = localStorage.getItem('choixPendentif') === 'true';
+        var choixPasPendentif = localStorage.getItem('choixPendentif') === 'false';
+        var liberer = localStorage.getItem('liberer') === 'true';
+        var PasLiberer = localStorage.getItem('liberer') === 'false';
+        var confirmRedirect = confirm(
+          "Vous allez etre dirigé vers la camera, veuilliez scanner le qrcode"
+        );
+
+        if (confirmRedirect && choixPendentif || confirmRedirect && PasLiberer) {
+          window.location.href = "./QR11M1.html";
+        } else if (confirmRedirect) {
+          window.location.href = "./QR11M2.html";
+        }
       }
-    }
-  </script>
-  <!-- REDIRECTION VERS CAMERA -->
+    </script>
 
   <!-- CONTAINER -->
   <script src="../script/text.js"></script>

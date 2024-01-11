@@ -40,7 +40,8 @@
       let hitTestSourceRequested = false;
 
       let objectPlaced = false;
-      let newModel; // Variable pour stocker l'instance de l'objet
+      let objectRotated = false;
+      let newModel;
 
       init();
       animate();
@@ -99,8 +100,9 @@
               modelInstances.push(newModel);
 
               objectPlaced = true;
-            } else if (objectPlaced && reticle.visible) {
-              jumpObject(newModel);
+            } else if (objectPlaced && reticle.visible && !objectRotated) {
+              rotateObject(newModel);
+              objectRotated = true;
             }
           });
 
@@ -115,7 +117,6 @@
         reticle.visible = false;
         scene.add(reticle);
 
-        // Ajout d'OrbitControls pour permettre le déplacement avec le doigt
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enablePan = true;
         controls.enableZoom = true;
@@ -123,12 +124,32 @@
         window.addEventListener("resize", onWindowResize);
       }
 
-      function jumpObject(object) {
-        object.position.y += 0.5; // Exemple de saut vertical
+      function rotateObject(object) {
+        const rotationSpeed = 0.02;
+
+        const animateRotation = () => {
+          object.rotateY(rotationSpeed);
+          renderer.setAnimationLoop(animateRotation);
+        };
+
+        animateRotation();
+
+        // Réinitialiser les indicateurs et la visibilité lorsque l'objet a fini de tourner
+        setTimeout(() => {
+          scene.remove(object);
+          resetObjectStatus();
+          resetReticleVisibility();
+        }, 5000);
       }
 
-      function onSelect() {
-        // Fonction onSelect modifiée si nécessaire
+      function resetObjectStatus() {
+        objectPlaced = false;
+        objectRotated = false;
+      }
+
+      function resetReticleVisibility() {
+        reticle.visible = false;
+        renderer.setAnimationLoop(animate);
       }
 
       function onWindowResize() {
@@ -138,12 +159,7 @@
       }
 
       function animate() {
-        renderer.setAnimationLoop(render);
-        controls.update(); // Mise à jour des contrôles
-      }
-
-      function render(timestamp, frame) {
-        if (frame) {
+        if (!objectRotated) {
           const referenceSpace = renderer.xr.getReferenceSpace();
           const session = renderer.xr.getSession();
 
@@ -167,6 +183,7 @@
           }
 
           if (hitTestSource) {
+            const frame = renderer.xr.getFramebuffer();
             const hitTestResults = frame.getHitTestResults(hitTestSource);
 
             if (hitTestResults.length) {
@@ -177,7 +194,7 @@
                 hit.getPose(referenceSpace).transform.matrix
               );
             } else {
-              reticle.visible = false;
+              reticle.visible = true;
             }
           }
         }
